@@ -11,5 +11,5 @@ Collaborative work by Simon and Olle
 * Python 3
 	* [apistar](https://github.com/encode/apistar)
 	* [fire](https://github.com/google/python-fire)
-	* [fbchat](https://fbchat.readthedocs.io/en/master/)
+	* [fbchat](https://fbchat.readthedocs.io/en/master/) (do not install with pip, see this [thread](https://stackoverflow.com/questions/47028093/attributeerror-spotify-object-has-no-attribute-current-user-saved-tracks))
 	* [spotipy](https://spotipy.readthedocs.io/en/latest/)
