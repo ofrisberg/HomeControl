@@ -2,6 +2,8 @@
 
 Collaborative work by Simon and Olle
 
+asdfasdf
+
 ## Usage
 
 1. Generate a config file by running `python configsetup.py`
