@@ -1,0 +1,45 @@
+<div id="settings" class="w3-card"><div class="w3-padding">
+	<h3>{{title}}</h3>
+	<p>
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="Update contacts" @click="updateContacts"/>
+	</p>
+	<p>
+	<input type="password" class="w3-small w3-padding-small" placeholder="Password" v-model="pwd"/>
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="Login (Messenger)" @click="login"/>
+	</p>
+</div></div>
+<script>
+var settings = new Vue({
+	el: '#settings',
+	data: {
+		title: 'Settings',
+		contacts: [],
+		pwd: '',
+	},
+	methods: {
+		updateContacts: function () {
+			var self = this;
+			this.$http.get('/api/contactlist/').then(function(response){
+				if(response.status == "200"){
+					if (response.data != null){
+						self.contacts = response.data;
+						newmessage.contacts = response.data;
+					}
+				}
+			});
+		},
+		login: function(){
+			var self = this;
+			pwd = this.pwd;
+			this.$http.get('/api/messenger/?action=login&pwd='+pwd).then(function(response){
+				if(response.status == "200" && response.data != null){
+					
+				}
+			});
+		},
+	},
+	beforeMount(){
+		this.updateContacts();
+	},
+});
+</script>

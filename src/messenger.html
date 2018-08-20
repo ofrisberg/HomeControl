@@ -1,0 +1,42 @@
+<div id="newmessage" class="w3-card"><div class="w3-padding">
+	<h3>{{title}}</h3>
+	<select class="w3-input w3-small w3-padding-small" v-model="active_contact">
+		<option v-for="contact in contacts" v-bind:value="contact">
+		{{ contact.nick_name }}
+		</option>
+	</select>
+	<p>
+	<textarea class="w3-input w3-small w3-padding-small" v-model="msg"/></textarea>
+	</p>
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="Send (Messenger)" @click="send" :disabled="active_contact.messenger_id==''"/>
+</div></div>
+<script>
+var newmessage = new Vue({
+	el: '#newmessage',
+	data: {
+		title: 'Message',
+		contacts: [],
+		active_contact: {},
+		msg: '',
+		
+	},
+	methods: {
+		send: function(){
+			var self = this;
+			console.log(this.msg);
+			console.log(this.active_contact.messenger_id);
+			m_id = this.active_contact.messenger_id;
+			msg = this.msg;
+			this.msg = '';
+			this.$http.get('/api/messenger/?action=send&messenger_id='+m_id+'&text_message='+msg).then(function(response){
+				if(response.status == "200" && response.data != null){
+					
+				}
+			});
+		},
+		
+	},
+	beforeMount(){
+	},
+}); 
+</script>

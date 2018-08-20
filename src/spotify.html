@@ -1,0 +1,70 @@
+<div id="spotify" class="w3-card"><div class="w3-padding">
+	<h3>{{title}}</h3>
+	<p>
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="<" @click="playPrevious" />
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="Pause" @click="pause" />
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value="Play" @click="play" />
+	<input type="button" class="w3-button w3-dark-gray w3-small w3-padding-small" value=">" @click="playNext" />
+	</p>
+	<p>
+	<input type="range" min="0" max="100" step="5" class="w3-input w3-small w3-padding-small" v-model="volume" @click="volumeChange"></p>
+	<select class="w3-input w3-small w3-padding-small" v-model="active_playlist" @change="playlistChange">
+		<option v-for="playlist in playlists" v-bind:value="playlist">
+		{{ playlist.name }}
+		</option>
+	</select>
+	<select class="w3-input w3-small w3-padding-small" v-model="active_track" @change="trackChange">
+		<option v-for="track in tracks" v-bind:value="track">
+		{{ track.name }}
+		</option>
+	</select>
+	</p>
+</div></div>
+<script>
+var spotify = new Vue({
+	el: '#spotify',
+	data: {
+		title: 'Music',
+		volume: 50,
+		active_playlist: {'name': 'loading', 'id': '1337'},
+		playlists: [],
+		active_track: {'name': 'loading', 'id': '1337'},
+		tracks: [],
+	},
+	methods: {
+		play: function () {this.callAPI('?action=play');},
+		playPrevious: function () {this.callAPI('?action=playprevious');},
+		playNext: function () {this.callAPI('?action=playnext');},
+		pause: function () {this.callAPI('?action=pause');},
+		volumeChange: function() {this.callAPI('?action=setvolume&value='+this.volume);},
+		getPlaylists: function () {this.callAPI('?action=getplaylists');},
+		playlistChange: function () {this.callAPI('?action=getplaylisttracks&value='+this.active_playlist.id);},
+		trackChange: function () {this.callAPI('?action=playtrack&value='+this.active_track.id);},
+		callAPI: function (params) {
+			var self = this;
+			this.$http.get('/api/spotify/'+params).then(function(response){
+				if(response.status == "200"){
+					if (response.data != null){
+						self.handleResponse(response.data);
+					}
+				}
+			});
+		},
+		handleResponse: function(resp){
+			console.log(resp);
+			if('active_song' in resp){
+				this.active_song = resp['active_song']
+			}
+			if('playlists' in resp){
+				this.playlists = resp['playlists']
+			}
+			if('playlist_tracks' in resp){
+				this.tracks = resp['playlist_tracks']
+			}
+		}
+	},
+	beforeMount(){
+		this.getPlaylists();
+	},
+});
+</script>
