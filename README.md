@@ -1,6 +1,9 @@
 # HomeControl
 
+Collaborative work by Simon
+
 ## Usage
+
 1. Generate a config file by running `python configsetup.py`
 2. Run `python main.server.py`
 
