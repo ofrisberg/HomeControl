@@ -6,7 +6,7 @@
 
 ## Requirements
 * Python 3
-⋅⋅* [apistar](https://github.com/encode/apistar)
-⋅⋅* [fire](https://github.com/google/python-fire)
-⋅⋅* [fbchat](https://fbchat.readthedocs.io/en/master/)
-⋅⋅* [spotipy](https://spotipy.readthedocs.io/en/latest/)
+	* [apistar](https://github.com/encode/apistar)
+	* [fire](https://github.com/google/python-fire)
+	* [fbchat](https://fbchat.readthedocs.io/en/master/)
+	* [spotipy](https://spotipy.readthedocs.io/en/latest/)
