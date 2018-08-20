@@ -1,6 +1,6 @@
 # HomeControl
 
-Collaborative work by Simon and Olle2
+Collaborative work by Simon and Olle2hello
 
 asdfasdf
 
