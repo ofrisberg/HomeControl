@@ -1,6 +1,6 @@
 # HomeControl
 
-Collaborative work by Simon
+Collaborative work by Simon and Olle
 
 ## Usage
 
