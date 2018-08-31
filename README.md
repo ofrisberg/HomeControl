@@ -1,16 +1,8 @@
 # HomeControl
 
-Collaborative work by Simon and Olle2
-asdfasdf
-
 ## Usage
-
 1. Generate a config file by running `python configsetup.py`
 2. Run `python main.server.py`
-
-
-
-asdfasdfafd
 
 ## Requirements
 * Python 3
